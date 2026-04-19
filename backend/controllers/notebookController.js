@@ -2,11 +2,15 @@ const Notebook = require("../models/Notebook");
 
 // ─── Helper: get or create the single notebook document ──────────────────────
 const getOrCreateNotebook = async () => {
-  let notebook = await Notebook.findOne();
-  if (!notebook) {
-    notebook = await Notebook.create({ entries: {} });
+  try {
+    let notebook = await Notebook.findOne();
+    if (!notebook) {
+      notebook = await Notebook.create({ entries: new Map() });
+    }
+    return notebook;
+  } catch (error) {
+    throw new Error(`Database error: ${error.message}`);
   }
-  return notebook;
 };
 
 // ─── CREATE / ADD DATA ────────────────────────────────────────────────────────
