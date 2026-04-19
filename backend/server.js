@@ -13,7 +13,7 @@ connectDB();
 const app = express();
 
 // ─── Core Middleware ──────────────────────────────────────────────────────────
-aapp.use(cors({
+app.use(cors({
   origin: [
     "http://localhost:5173",
     "https://notebook-app-nine-steel.vercel.app"
