@@ -13,10 +13,13 @@ connectDB();
 const app = express();
 
 // ─── Core Middleware ──────────────────────────────────────────────────────────
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(requestLogger);
+aapp.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://notebook-app-nine-steel.vercel.app"
+  ],
+  credentials: true
+}));
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 app.use("/api/notebook", notebookRoutes);
