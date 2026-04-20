@@ -12,7 +12,7 @@ connectDB();
 
 const app = express();
 
-// ─── Core Middleware ──────────────────────────────────────────────────────────
+// ─── Core Middleware ─────────────────────
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -20,8 +20,11 @@ app.use(cors({
   ],
   credentials: true
 }));
+app.use(express.json());           // ← THIS must be before routes
+app.use(express.urlencoded({ extended: true }));
+app.use(requestLogger);
 
-// ─── Routes ───────────────────────────────────────────────────────────────────
+// ─── Routes ──────────────────────────────
 app.use("/api/notebook", notebookRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
